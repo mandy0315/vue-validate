@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import App from "@/WWW.vue";
+import App from "@/App.vue";
 import "@/assets/scss/style.scss";
 // windi.css
 import "virtual:windi.css";
