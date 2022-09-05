@@ -13,16 +13,16 @@ export default {
       default: "",
     },
   },
-  setup(prop) {
+  setup(props) {
     const isRequired = ref(true);
 
     const rules = inject("rules");
     const model = inject("model");
     const errorMsgs = inject("errorMsgs");
 
-    const errorMsg = computed(() => errorMsgs[prop.type] || "");
-    const getRule = computed(() => rules[prop.type] || []);
-    const getValue = computed(() => model[prop.type] || null);
+    const errorMsg = computed(() => errorMsgs[props.type] || "");
+    const getRule = computed(() => rules[props.type] || []);
+    const getValue = computed(() => model[props.type] || null);
 
     const checkIsRequired = () => {
       if (getRule.value.length) {
@@ -66,8 +66,8 @@ export default {
     watch(
       () => getValue.value,
       async (val) => {
-        const res = await validate(prop.type, val);
-        res.errorMsg ? (errorMsgs[prop.type] = res.errorMsg) : delete errorMsgs[prop.type];
+        const res = await validate(props.type, val);
+        res.errorMsg ? (errorMsgs[props.type] = res.errorMsg) : delete errorMsgs[props.type];
       },
       { deep: true },
     );
