@@ -10,19 +10,14 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "/", // 開始路徑
-  resolve: {
-    alias: {
-      // 別名
-      "@/": new URL("./src/", import.meta.url).pathname,
-      "/images": new URL("./src/assets/images", import.meta.url).pathname,
-    },
-  },
   server: {
     proxy: {
-      "/news": {
-        target: "https://news.housefun.com.tw",
+      "/api": {
+        target: "https://007-t.houseprice.tw/api/",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/news/g, ""),
+        secure: false,
+        ws: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },

@@ -1,0 +1,21 @@
+import axios from "axios";
+
+const service = axios.create({
+  withCredentials: true,
+  timeout: 90000, // request timeout
+});
+
+// request interceptors
+service.interceptors.request.use(
+  async (config) => {
+    let token = `Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IlhsWnllRmtrcXg0MkRrZG5CMlRvUHciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2NjIzNjQxNTUsImV4cCI6MTY2MjM2Nzc1NSwiaXNzIjoiaHR0cHM6Ly9vcGlkLXQuZXZlcnRydXN0LmNvbS50dyIsImF1ZCI6ImhwX21lbWJlcl90b2tlbl9hcGkiLCJjbGllbnRfaWQiOiJocF9tZW1iZXJfdG9rZW4iLCJzdWIiOiIzZmRjM2QyNS05ZjMyLTRkNGUtYmU1MS0xYzI0NjgzNjE1MGUiLCJqdGkiOiIwNTAzYzVkOS00ZjRkLTQ2MGUtYTY0OC05MjM2ZjZhMGI4M2QiLCJOYW1lIjoi5aSn5bir5ris6KmmIiwiUGhvbmUiOiIwOTAwMDAwMDAwIiwiVXNlcklkIjoiM2ZkYzNkMjUtOWYzMi00ZDRlLWJlNTEtMWMyNDY4MzYxNTBlIiwiR3JvdXAiOiJJbGxlZ2FsLExlZ2FsIiwicm9sZXMiOiLns7vntbHpm7vlgrMs5bqr5a2YL-WIiueZuyzosrfmlrnntpPnh58s6ZaL55m8L-mbu-WCsyzmnIPlk6HkuK3lv4Ms6Zu75YKz57SA6YyELExlZ2FsLFByZW1pdW0iLCJWZXJpZnlDb2RlIjoiTFd2TVNvM25DeTE4WjR0ODdPcnJ6RTdsS3MzMUh4b0giLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwic2NvcGUiOlsiaHBfbWVtYmVyX3Rva2VuX2FwaSJdfQ.a08PGoofebRrCbw13yqiy3xSUpDOYv865XKOgtpyk-KYBgaxOSnVA1tEqlMjsbmloaYl7_ZMpl9oLwFFOhUiMlJUCJrUT3c2YQp1rHNmDCy3a08wBE6xkhZynT6eamLLrmxbTNCKI_FQAeeCrMOSSr3IPeR270e_uU25XmLY1ragHBq4VY8ALfiyToQnZvlaz3_qhQO_-pCfDpeRu-1rzaX2cWPDxLKQPHdY-iMzxbrc12gYct723ZEvUGWCpjwVIXjezLYAVTJR5NgREbEL3w5mw06u0f1hwhXZOuSFOBx2KrPue-CPCMF5RDhaw0LrLjKeQBd3PCIszV_YQYVtTQ`;
+
+    if (token) {
+      config.headers.common.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
+
+export default service;
