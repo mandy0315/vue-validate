@@ -33,7 +33,7 @@ export default {
     };
     checkIsRequired();
 
-    const checkError = async (key, val) => {
+    const validate = async (key, val) => {
       let res = {
         isError: false,
         errorMsg: "",
@@ -66,7 +66,7 @@ export default {
     watch(
       () => getValue.value,
       async (val) => {
-        const res = await checkError(prop.type, val);
+        const res = await validate(prop.type, val);
         res.errorMsg ? (errorMsgs[prop.type] = res.errorMsg) : delete errorMsgs[prop.type];
       },
       { deep: true },

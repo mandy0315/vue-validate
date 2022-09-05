@@ -49,7 +49,7 @@ export default {
 
     // 送出
     const handleSubmit = async () => {
-      const isError = await form.value.checkAllError();
+      const isError = await form.value.allValidate();
       console.log(isError);
     };
     return {

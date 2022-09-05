@@ -28,7 +28,7 @@ export default {
 
     const errorMsgs = computed(() => props.errorMsgs);
 
-    const checkError = async (key, val) => {
+    const validate = async (key, val) => {
       let res = {
         isError: false,
         errorMsg: "",
@@ -59,7 +59,7 @@ export default {
     };
 
     // 檢查全部驗證
-    const checkAllError = () => {
+    const allValidate = () => {
       const rules = props.rules;
 
       return new Promise((resolve) => {
@@ -67,7 +67,7 @@ export default {
         let count = 0;
 
         Object.keys(rules).forEach(async (key) => {
-          const res = await checkError(key, props.model[key]);
+          const res = await validate(key, props.model[key]);
           res.errorMsg ? (errorMsgs.value[key] = res.errorMsg) : delete errorMsgs.value[key];
 
           if (++count === Object.keys(rules).length) {
@@ -78,7 +78,7 @@ export default {
       });
     };
 
-    return { checkAllError };
+    return { allValidate };
   },
 };
 </script>
