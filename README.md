@@ -1,6 +1,6 @@
-## 檔案開啟
-
+## 驗證元件範例
 ---
-
-1. 請先 pnpm i
-2. vue 環境使用 vite 開啟檔案使用 pnpm run dev
+### 專案使用步驟
+1. `pnpm install` 安裝套件包
+2. `utils -> request.js` 放入 api 所需要的 token
+3. `pnpm run dev` 專案開發模式啟動
